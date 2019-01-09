@@ -1,0 +1,11 @@
+.card img {
+    max-height: 300px;
+    width: 250px;
+    margin-top: 30px; 
+    margin: auto; 
+    padding: 2%;
+}
+.card p {
+    color: black;
+    font-size: 14px;
+}
