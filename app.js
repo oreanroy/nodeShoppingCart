@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
 var expressHbs = require('express-handlebars');
+var mongoose = require('mongoose')
 
 var routes = require('./routes/index');
 
@@ -28,6 +29,31 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+
+
+var url = 'mongodb://orean:' + 
+ process.env.MONGO_ATLAS_PW + 
+ '@node-rest-shop-shard-00-00-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-01-qqy8u.mongodb.net:27017,node-rest-shop-shard-00-02-qqy8u.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin&retryWrites=true'
+
+
+
+mongoose.connect(
+    url, 
+        {
+            auth: {
+                user: 'orean',
+                password: '2437oreanRahul'
+            },
+            useNewUrlParser: true
+        },
+    function(err, client) {
+        if (err) {
+            console.log(err);
+        }
+    console.log('connected!!!');
+    }
+);
+mongoose.Promise = global.Promise;
 
 
 /// catch 404 and forwarding to error handler
