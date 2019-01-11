@@ -7,7 +7,11 @@
     margin: auto; 
     padding: 2%;
 }
+
 .card p {
     color: black;
     font-size: 14px;
+}
+.card{
+    margin-top: 4%;
 }
