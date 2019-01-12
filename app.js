@@ -8,6 +8,9 @@ var hbs = require('hbs');
 var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
+
 
 var routes = require('./routes/index');
 
@@ -28,6 +31,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false }));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
@@ -57,6 +63,7 @@ mongoose.connect(
 );
 mongoose.Promise = global.Promise;
 
+require('./config/passport');
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
